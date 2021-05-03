@@ -18,4 +18,10 @@ SELECT COUNT(subscriber_id) FROM subscribers WHERE subscriber_id IN (SELECT subs
 SELECT * FROM subscribers WHERE subscriber_id IN (SELECT subscriber_id FROM subscriber_fees WHERE subscriber_debt BETWEEN 400 AND 1000);
 SELECT COUNT(subscriber_id) FROM subscribers WHERE subscriber_id IN (SELECT subscriber_id FROM subscriber_fees WHERE subscriber_debt BETWEEN 400 AND 1000);
 
+SELECT * FROM subscribers WHERE subscriber_id IN (SELECT subscriber_id FROM subscriber_fees WHERE debt_time > 7);
+SELECT COUNT(subscriber_id) FROM subscribers WHERE subscriber_id IN (SELECT subscriber_id FROM subscriber_fees WHERE debt_time > 7);
+
+SELECT * FROM subscribers WHERE subscriber_id IN (SELECT subscriber_id FROM subscriber_fees WHERE debt_time > 30);
+SELECT COUNT(subscriber_id) FROM subscribers WHERE subscriber_id IN (SELECT subscriber_id FROM subscriber_fees WHERE debt_time > 30);
+
 SELECT * FROM subscriber_fees;
