@@ -38,7 +38,15 @@ INSERT INTO subscribers (subscriber_first_name, subscriber_last_name, subscriber
 ('Carmine', 'Lewin', 24, 'M', 37844, 'Little Tiormelp', '732 Quincy Plaza', '+351 982 434 5748', 'standard', 'standard', 3),
 ('Ryan', 'Tolcharde', 36, 'M', 39674, 'Little Tiormelp', '35 Spohn Park', '+62 172 200 3726', 'standard', 'standard', 3),
 ('Jase', 'Cockshutt', 63, 'M', 38578, 'Little Tiormelp', '2214 Delaware Street', '+62 172 200 3726', 'parallel', 'exemptionary', 3),
-('Marta', 'Storer', 56, 'F', 38578, 'Little Tiormelp', '2214 Delaware Street', '+62 172 200 3726', 'parallel', 'standard', 3);
+('Marta', 'Storer', 56, 'F', 38578, 'Little Tiormelp', '2214 Delaware Street', '+62 172 200 3726', 'parallel', 'standard', 3),
+('Iseabal', 'Boner', 56, 'F', 49674, 'Lower North Yugget', '067 Kropf Street', '+421 759 241 4638', 'standard', 'standard', 4),
+('Gillian', 'Pentecost', 32, 'F', 49683, 'Lower North Yugget', '78485 Sachs Road', '+33 731 616 0594', 'standard', 'standard', 4),
+('Mendy', 'Woodger', 27, 'M', 49653, 'Lower North Yugget', '793 John Wall Hill', '+86 329 961 0895', 'parallel', 'standard', 4),
+('Bord', 'Meatcher', 73, 'M', 49653, 'Lower North Yugget', '793 John Wall Hill', '+86 329 961 0895', 'parallel', 'exemptionary', 4),
+('Wait', 'Edscer', 62, 'M', 45465, 'Lower North Yugget', '3959 Anniversary Pass', '+504 384 385 7877', 'standard', 'exemptionary', 4),
+('Dita', 'Matuszkiewicz', 42, 'F', 42466, 'Lower North Yugget', '92800 Thierer Alley', '+86 341 249 4733', 'standard', 'standard', 4),
+('Cliff', 'Pressland', 62, 'M', 43266, 'Lower North Yugget', '12 Manley Drive', '+7 700 262 1278', 'standard', 'exemptionary', 4),
+('Maris', 'Garioch', 25, 'F', 47456, 'Lower North Yugget', '072 Butterfield Lane', '+86 495 390 8510', 'standard', 'standard', 4);
 
 INSERT INTO subscriber_fees (subscriber_id, subscriber_access, subscriber_intercity_access, subscriber_fee, subscriber_debt, subscriber_intercity_debt, debt_time)
 	VALUES
@@ -66,7 +74,15 @@ INSERT INTO subscriber_fees (subscriber_id, subscriber_access, subscriber_interc
 (22, true, false, 1000, 0, 0, 0),
 (23, true, false, 1500, 0, 1000, 75),
 (24, true, true, 600, 0, 0, 0),
-(25, true, false, 800, 0, 0, 0);
+(25, true, false, 800, 0, 0, 0),
+(26, true, false, 1000, 200, 0, 1),
+(27, true, true, 1500, 0, 0, 0),
+(28, true, false, 800, 0, 0, 0),
+(29, true, true, 600, 0, 0, 0),
+(30, true, false, 500, 0, 0, 0),
+(31, true, false, 1500, 0, 2000, 143),
+(32, true, false, 500, 0, 0, 0),
+(33, true, true, 1500, 0, 0, 0);
 -- standard phone standard fee: 1000 normal access, 1500 intercity
 -- parallel phone standard fee: 800 normal access, 1200 intercity
 -- dual phone standard fee: 900 normal access, 1300 intercity
