@@ -16,6 +16,7 @@ CREATE TABLE course_work_db_1.subscribers (
     subscriber_address_district VARCHAR(30) NULL,
     subscriber_address_street VARCHAR(30) NULL,
     subscriber_phone VARCHAR(30) NULL,
+    subscriber_phone_type VARCHAR(30) NULL,
     subscriber_type VARCHAR(30) NULL,
     station_id INTEGER,
     FOREIGN KEY (station_id) REFERENCES stations (station_id)
