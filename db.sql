@@ -29,6 +29,7 @@ CREATE TABLE course_work_db_1.subscriber_fees (
     subscriber_fee INTEGER NULL,
     subscriber_debt INTEGER DEFAULT 0,
     subscriber_intercity_debt INTEGER DEFAULT 0,
+    debt_time INTEGER NULL DEFAULT 0,
     FOREIGN KEY (subscriber_id) REFERENCES subscribers (subscriber_id)
 );
 
