@@ -46,7 +46,23 @@ INSERT INTO subscribers (subscriber_first_name, subscriber_last_name, subscriber
 ('Wait', 'Edscer', 62, 'M', 45465, 'Lower North Yugget', '3959 Anniversary Pass', '+504 384 385 7877', 'standard', 'exemptionary', 4),
 ('Dita', 'Matuszkiewicz', 42, 'F', 42466, 'Lower North Yugget', '92800 Thierer Alley', '+86 341 249 4733', 'standard', 'standard', 4),
 ('Cliff', 'Pressland', 62, 'M', 43266, 'Lower North Yugget', '12 Manley Drive', '+7 700 262 1278', 'standard', 'exemptionary', 4),
-('Maris', 'Garioch', 25, 'F', 47456, 'Lower North Yugget', '072 Butterfield Lane', '+86 495 390 8510', 'standard', 'standard', 4);
+('Maris', 'Garioch', 25, 'F', 47456, 'Lower North Yugget', '072 Butterfield Lane', '+86 495 390 8510', 'standard', 'standard', 4),
+('Roz', 'Auletta', 35, 'F', 57456, 'West Flibrap', '056 Pepper Wood Circle', '+420 820 879 1837', 'standard', 'standard', 5),
+('Tedd', 'Verbeek', 45, 'M', 57746, 'West Flibrap', '66944 Bunting Junction', '+86 960 109 4982', 'standard', 'standard', 5),
+('Rosanna', 'Duffy', 55, 'F', 57463, 'West Flibrap', '3 West Court', '+86 992 589 7369', 'standard', 'standard', 5),
+('Deny', 'Amyes', 65, 'F', 52346, 'West Flibrap', '97885 Browning Avenue', '+351 953 620 5700', 'standard', 'exemptionary', 5),
+('Carney', 'Adamkiewicz', 75, 'M', 54646, 'West Flibrap', '478 Shasta Drive', '+55 265 205 8628', 'standard', 'exemptionary', 5),
+('Kimbell', 'Andriveau', 62, 'M', 52436, 'West Flibrap', '1 Westridge Place', '+86 799 146 4621', 'dual', 'standard', 5),
+('Phaidra', 'Cattlow', 34, 'F', 52436, 'West Flibrap', '1 Westridge Place', '+503 370 288 4782', 'dual', 'standard', 5),
+('Gennifer', 'Padillo', 36, 'F', 51236, 'West Flibrap', '804 Westend Avenue', '+86 356 652 8293', 'standard', 'exemptionary', 5),
+('Winifield', 'Feldharker', 29, 'M', 61236, 'East Hawailgost Heights', '8754 Veith Lane', '+84 676 682 2802', 'standard', 'standard', 6),
+('Yard', 'Snarr', 39, 'M', 61736, 'East Hawailgost Heights', '2 Nancy Street', '+420 688 929 9833', 'standard', 'standard', 6),
+('Stavros', 'Pauleau', 49, 'M', 63236, 'East Hawailgost Heights', '09554 Ruskin Avenue', '+62 256 538 8672', 'standard', 'standard', 6),
+('Falito', 'Wheeldon', 59, 'M', 65636, 'East Hawailgost Heights', '9781 Dapin Drive', '+374 785 624 0982', 'standard', 'standard', 6),
+('Hanna', 'Cauldfield', 69, 'F', 63636, 'East Hawailgost Heights', '512 Saint Paul Alley', '+86 682 373 8055', 'standard', 'exemptionary', 6),
+('Charis', 'Wand', 79, 'F', 66456, 'East Hawailgost Heights', '53907 Commercial Park', '+48 655 259 4536', 'standard', 'exemptionary', 6),
+('Camel', 'Margach', 52, 'F', 67345, 'East Hawailgost Heights', '666 Merry Park', '+7 348 734 1650', 'standard', 'standard', 6),
+;
 
 INSERT INTO subscriber_fees (subscriber_id, subscriber_access, subscriber_intercity_access, subscriber_fee, subscriber_debt, subscriber_intercity_debt, debt_time)
 	VALUES
@@ -82,7 +98,25 @@ INSERT INTO subscriber_fees (subscriber_id, subscriber_access, subscriber_interc
 (30, true, false, 500, 0, 0, 0),
 (31, true, false, 1500, 0, 2000, 143),
 (32, true, false, 500, 0, 0, 0),
-(33, true, true, 1500, 0, 0, 0);
+(33, true, true, 1500, 0, 0, 0),
+(34, true, true, 1500, 0, 0, 0),
+(35, false, false, 1000, 200, 0, 5),
+(36, true, false, 1000, 0, 0, 0),
+(37, true, false, 500, 0, 0, 0),
+(38, true, true, 750, 0, 0, 0),
+(39, true, false, 900, 0, 0, 0),
+(40, true, false, 900, 500, 0, 10),
+(41, true, false, 750, 0, 250, 15),
+(42, true, false, 1000, 0, 0, 0),
+(43, true, false, 1500, 0, 250, 20),
+(44, true, true, 1500, 0, 0, 0),
+(45, false, false, 1000, 800, 0, 17),
+(46, true, false, 500, 0, 0, 0),
+(47, true, true, 750, 0, 0, 0),
+(48, true, true, 1500, 0, 0, 0),
+
+;
+-- 6
 -- standard phone standard fee: 1000 normal access, 1500 intercity
 -- parallel phone standard fee: 800 normal access, 1200 intercity
 -- dual phone standard fee: 900 normal access, 1300 intercity
