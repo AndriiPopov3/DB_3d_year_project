@@ -41,7 +41,7 @@ CREATE TABLE course_work_db_1.phone_numbers (
 );
 
 CREATE TABLE course_work_db_1.public_phones (
-	public_phone_id INTEGER NOT NULL PRIMARY KEY,
+	public_phone_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     public_phone_type VARCHAR(30) NULL,
     station_id INTEGER,
     public_phone_address_district VARCHAR(30) NULL,
@@ -50,7 +50,7 @@ CREATE TABLE course_work_db_1.public_phones (
 );
 
 CREATE TABLE course_work_db_1.intercity_log (
-	intercity_call_id INTEGER NOT NULL PRIMARY KEY,
+	intercity_call_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     intercity_call_date DATE NULL,
 	subscriber_id INTEGER NOT NULL,
     intercity_call_destination VARCHAR(30) NULL,
