@@ -274,22 +274,22 @@ INSERT INTO public_phones (public_phone_type, station_id, public_phone_address_d
 ('public', 9, 'Downtown Plolreg', '4 Union Alley'),
 ('public', 9, 'Downtown Plolreg', '6 Onsgard Parkway');
 
-INSERT INTO intercity_log (intercity_call_date, subscriber_id, intercity_call_destination)
+INSERT INTO intercity_log (intercity_call_date, subscriber_id, station_id, intercity_call_destination)
 	VALUES
-('2020-06-10', 2, 'Kharkiv'),
-('2020-06-10', 3, 'Kharkiv'),
-('2020-06-10', 8, 'Lviv'),
-('2020-06-10', 8, 'Odesa'),
-('2020-06-10', 9, 'Ternopil'),
-('2020-06-10', 9, 'Ternopil'),
-('2020-06-10', 9, 'Odesa'),
-('2020-06-10', 14, 'Kharkiv'),
-('2020-06-10', 16, 'Lviv'),
-('2020-06-10', 16, 'Lviv'),
-('2020-06-10', 17, 'Odesa'),
-('2020-06-10', 17, 'Ternopil'),
-('2020-06-10', 17, 'Odesa'),
-('2020-06-10', 17, 'Ternopil'),
-('2020-06-10', 21, 'Dnipro'),
-('2020-06-10', 47, 'Dnipro'),
-('2020-06-10', 47, 'Odesa');
+('2020-06-10', 2, 1, 'Kharkiv'),
+('2020-06-11', 3, 1, 'Kharkiv'),
+('2020-06-12', 8, 1, 'Lviv'),
+('2020-06-13', 8, 1, 'Odesa'),
+('2020-06-14', 9, 1, 'Ternopil'),
+('2020-06-15', 9, 1, 'Ternopil'),
+('2020-06-16', 9, 1, 'Odesa'),
+('2020-06-17', 14, 2, 'Kharkiv'),
+('2020-06-18', 16, 2, 'Lviv'),
+('2020-06-19', 16, 2, 'Lviv'),
+('2020-06-20', 17, 3, 'Odesa'),
+('2020-06-21', 17, 3, 'Ternopil'),
+('2020-06-22', 17, 3, 'Odesa'),
+('2020-06-23', 17, 3, 'Ternopil'),
+('2020-06-24', 21, 3, 'Dnipro'),
+('2020-06-25', 47, 6, 'Dnipro'),
+('2020-06-26', 47, 6, 'Odesa');

@@ -53,7 +53,9 @@ CREATE TABLE course_work_db_1.intercity_log (
 	intercity_call_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     intercity_call_date DATE NULL,
 	subscriber_id INTEGER NOT NULL,
+    station_id INTEGER NOT NULL,
     intercity_call_destination VARCHAR(30) NULL,
-    FOREIGN KEY (subscriber_id) REFERENCES subscribers (subscriber_id)
+    FOREIGN KEY (subscriber_id) REFERENCES subscribers (subscriber_id),
+    FOREIGN KEY (station_id) REFERENCES stations (station_id)
 );
 
