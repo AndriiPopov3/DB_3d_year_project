@@ -291,4 +291,5 @@ INSERT INTO intercity_log (intercity_call_date, subscriber_id, intercity_call_de
 ('2020-06-10', 17, 'Odesa'),
 ('2020-06-10', 17, 'Ternopil'),
 ('2020-06-10', 21, 'Dnipro'),
-('2020-06-10', 47, 'Dnipro');
+('2020-06-10', 47, 'Dnipro'),
+('2020-06-10', 47, 'Odesa');
