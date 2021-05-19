@@ -3,13 +3,22 @@ const routes = require('.');
 const connection = require('../app/db.config');
 const path = require('path');
 const { createValidSubscriber, updateValidSubscriber } = require('../middlewares/subscriber.validation.middleware');
+const { authenticateJWT } = require('../middlewares/authorization.middleware');
+
 const router = Router();
 
 
 // CRUD
 // add a new subscriber
-router.post('/', (req, res, next) => {
+router.post('/', authenticateJWT, (req, res, next) => {
     try {
+        const { role } = req.user;
+        if (role !== 'admin') {
+            return res.status(403).send({
+               error: true,
+               message: "Forbidden"
+            });
+       }
         const subscriber_data = {
             subscriber_first_name: req.body.subscriber_first_name,
             subscriber_last_name: req.body.subscriber_last_name,
@@ -59,8 +68,15 @@ router.post('/', (req, res, next) => {
 });
 
 // delete a subscriber
-router.delete('/:subscriber_id', (req, res, next) => { 
+router.delete('/:subscriber_id', authenticateJWT, (req, res, next) => { 
     try {
+        const { role } = req.user;
+        if (role !== 'admin') {
+            return res.status(403).send({
+               error: true,
+               message: "Forbidden"
+            });
+       }
         connection.query(`DELETE FROM subscribers WHERE subscriber_id = ${req.params.subscriber_id}`, (error, results, fields) => {
             if(error){
                 throw error;
@@ -76,8 +92,15 @@ router.delete('/:subscriber_id', (req, res, next) => {
 });
 
 // update a subscriber
-router.put('/:subscriber_id', (req, res, next) => { 
+router.put('/:subscriber_id', authenticateJWT, (req, res, next) => { 
     try {
+        const { role } = req.user;
+        if (role !== 'admin') {
+            return res.status(403).send({
+               error: true,
+               message: "Forbidden"
+            });
+       }
         const subscriber_data = {
             subscriber_first_name: req.body.subscriber_first_name,
             subscriber_last_name: req.body.subscriber_last_name,
@@ -91,7 +114,6 @@ router.put('/:subscriber_id', (req, res, next) => {
             subscriber_type: req.body.subscriber_type,
             station_id: req.body.station_id
         };
-        console.log(subscriber_data);
         res.data = subscriber_data;
     } catch(err) {
         next(err);

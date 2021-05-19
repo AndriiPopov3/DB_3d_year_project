@@ -2,12 +2,12 @@ const { Router } = require('express');
 const routes = require('.');
 const connection = require('../app/db.config');
 const path = require('path');
-
+const { authenticateJWT } = require('../middlewares/authorization.middleware');
 const router = Router();
 
 
 // get debt subs by station_id
-router.get('/debtors/:station_id', (req, res, next) => { 
+router.get('/debtors/:station_id', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT * FROM subscribers 
                           WHERE station_id=${req.params.station_id} 
@@ -36,7 +36,7 @@ router.get('/debtors/:station_id', (req, res, next) => {
 });
 
 // get all debtors
-router.get('/debtors', (req, res, next) => { 
+router.get('/debtors', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT * FROM subscribers 
                           WHERE subscriber_id IN (SELECT subscriber_id 
@@ -63,7 +63,7 @@ router.get('/debtors', (req, res, next) => {
 });
 
 // get debt subs by district
-router.get('/debtors_by_district/:subscriber_address_district', (req, res, next) => { 
+router.get('/debtors_by_district/:subscriber_address_district', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT * FROM subscribers 
                           WHERE subscriber_address_district = '${req.params.subscriber_address_district}' 
@@ -91,7 +91,7 @@ router.get('/debtors_by_district/:subscriber_address_district', (req, res, next)
 });
 
 // get subs with standard debt
-router.get('/debtors_std', (req, res, next) => { 
+router.get('/debtors_std', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT * FROM subscribers 
                           WHERE subscriber_id IN (SELECT subscriber_id 
@@ -115,7 +115,7 @@ router.get('/debtors_std', (req, res, next) => {
 });
 
 // get subs with intercity debt
-router.get('/debtors_itc', (req, res, next) => { 
+router.get('/debtors_itc', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT * FROM subscribers 
                           WHERE subscriber_id IN (SELECT subscriber_id 
@@ -139,7 +139,7 @@ router.get('/debtors_itc', (req, res, next) => {
 });
 
 // get subs with specific debt amount
-router.get('/debtors/:debt_min/:debt_max', (req, res, next) => { 
+router.get('/debtors/:debt_min/:debt_max', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT * FROM subscribers 
                           WHERE subscriber_id IN (SELECT subscriber_id 
@@ -163,7 +163,7 @@ router.get('/debtors/:debt_min/:debt_max', (req, res, next) => {
 });
 
 // get subs with specific debt amount
-router.get('/debtors_by_time/:debt_time_min', (req, res, next) => { 
+router.get('/debtors_by_time/:debt_time_min', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT * FROM subscribers 
                           WHERE subscriber_id IN (SELECT subscriber_id 

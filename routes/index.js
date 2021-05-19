@@ -6,6 +6,7 @@ const queryPhoneNumbersRoutes = require('./queryPhoneNumbersRoutes');
 const queryPublicPhonesRoutes = require('./queryPublicPhonesRoutes');
 const queryIntercityLogRoutes = require('./queryIntercityLogRoutes');
 const querySubscriberFeesRoutes = require('./querySubscriberFeesRoutes');
+const authRoutes = require('./authRoutes');
 const query1Routes = require('./query1Routes');
 const query2Routes = require('./query2Routes');
 const query3Routes = require('./query3Routes');
@@ -42,5 +43,5 @@ module.exports = (app) => {
     app.use('/query11', query11Routes);
     app.use('/query12', query12Routes);
     app.use('/query13', query13Routes);
-    // app.use('/api/auth', authRoutes);
+    app.use('/auth', authRoutes);
   };

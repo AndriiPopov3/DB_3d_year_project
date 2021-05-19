@@ -2,11 +2,12 @@ const { Router } = require('express');
 const routes = require('.');
 const connection = require('../app/db.config');
 const path = require('path');
+const { authenticateJWT } = require('../middlewares/authorization.middleware');
 
 const router = Router();
 
 // get phones by station
-router.get('/:station_id', (req, res, next) => { 
+router.get('/:station_id', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT * FROM public_phones 
                           WHERE station_id = ${req.params.station_id}`, (error, results, fields) => {
@@ -24,7 +25,7 @@ router.get('/:station_id', (req, res, next) => {
 });
 
 // get phones by district
-router.get('/public_phones_by_district/:public_phone_address_district', (req, res, next) => { 
+router.get('/public_phones_by_district/:public_phone_address_district', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT * FROM public_phones 
                           WHERE public_phone_address_district = '${req.params.public_phone_address_district}';

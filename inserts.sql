@@ -293,3 +293,5 @@ INSERT INTO intercity_log (intercity_call_date, subscriber_id, station_id, inter
 ('2020-06-24', 21, 3, 'Dnipro'),
 ('2020-06-25', 47, 6, 'Dnipro'),
 ('2020-06-26', 47, 6, 'Odesa');
+
+SELECT * FROM user_list;

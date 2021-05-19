@@ -4,12 +4,20 @@ const connection = require('../app/db.config');
 const path = require('path');
 const e = require('express');
 const { createValidPhone, updateValidPhone } = require('../middlewares/phone_number.validation.middleware');
+const { authenticateJWT } = require('../middlewares/authorization.middleware');
 
 const router = Router();
 
 // add a new phone number
-router.post('/', async (req, res, next) => { 
+router.post('/', authenticateJWT, (req, res, next) => { 
     try {
+        const { role } = req.user;
+        if (role !== 'admin' && role !== 'manager') {
+             return res.status(403).send({
+                error: true,
+                message: "Forbidden"
+             });
+        }
         const phone_data = {
             station_id: req.body.station_id,
             phone_number: req.body.phone_number,
@@ -41,8 +49,15 @@ router.post('/', async (req, res, next) => {
 });
 
 // update a phone number
-router.put('/:phone_number_id', async (req, res, next) => { 
+router.put('/:phone_number_id', authenticateJWT, (req, res, next) => { 
     try {
+        const { role } = req.user;
+        if (role !== 'admin' && role !== 'manager') {
+             return res.status(403).send({
+                error: true,
+                message: "Forbidden"
+             });
+        }
         const updatedData = {
             station_id: req.body.station_id,
             phone_number: req.body.phone_number,
@@ -66,8 +81,15 @@ router.put('/:phone_number_id', async (req, res, next) => {
 });
 
 // delete a phone number
-router.delete('/:phone_number_id', (req, res, next) => {
+router.delete('/:phone_number_id', authenticateJWT, (req, res, next) => {
     try {
+        const { role } = req.user;
+        if (role !== 'admin' && role !== 'manager') {
+             return res.status(403).send({
+                error: true,
+                message: "Forbidden"
+             });
+        }
         connection.query(`DELETE FROM phone_numbers WHERE phone_number_id = ${req.params.phone_number_id}`, (error, results, fields) => {
             if(error){
                 throw error;

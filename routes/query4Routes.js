@@ -2,11 +2,12 @@ const { Router } = require('express');
 const routes = require('.');
 const connection = require('../app/db.config');
 const path = require('path');
+const { authenticateJWT } = require('../middlewares/authorization.middleware');
 
 const router = Router();
 
 // get station with highest # of debtors
-router.get('/debtors/max_station', (req, res, next) => { 
+router.get('/debtors/max_station', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT station_id, COUNT(*) 
                           FROM subs_subs_fees_type 
@@ -26,7 +27,7 @@ router.get('/debtors/max_station', (req, res, next) => {
 });
 
 // get station with highest # of debtors
-router.get('/debtors/max_station_desc', (req, res, next) => { 
+router.get('/debtors/max_station_desc', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT station_id, COUNT(*) AS num_of_debtors
                           FROM subs_subs_fees_type 
@@ -46,7 +47,7 @@ router.get('/debtors/max_station_desc', (req, res, next) => {
 });
 
 // get station with highest # of debtors
-router.get('/debtors/max_station_asc', (req, res, next) => { 
+router.get('/debtors/max_station_asc', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT station_id, COUNT(*) AS num_of_debtors
                           FROM subs_subs_fees_type 
@@ -66,7 +67,7 @@ router.get('/debtors/max_station_asc', (req, res, next) => {
 });
 
 // get station by type with highest # of debtors
-router.get('/debtors/max_station_desc/:station_type', (req, res, next) => { 
+router.get('/debtors/max_station_desc/:station_type', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT station_id, COUNT(*) AS num_of_debtors
                           FROM subs_subs_fees_type 
@@ -87,7 +88,7 @@ router.get('/debtors/max_station_desc/:station_type', (req, res, next) => {
 });
 
 // get station by type with highest # of debtors
-router.get('/debtors/max_station_asc/:station_type', (req, res, next) => { 
+router.get('/debtors/max_station_asc/:station_type', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT station_id, COUNT(*) AS num_of_debtors
                           FROM subs_subs_fees_type 
@@ -108,7 +109,7 @@ router.get('/debtors/max_station_asc/:station_type', (req, res, next) => {
 });
 
 // get station with highest debt sum
-router.get('/debts/max_station', (req, res, next) => { 
+router.get('/debts/max_station', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT station_id, SUM(subscriber_debt) + SUM(subscriber_intercity_debt) AS "debt_sum"
                           FROM subs_subs_fees_type 
@@ -128,7 +129,7 @@ router.get('/debts/max_station', (req, res, next) => {
 });
 
 // get station with lowest debt sum
-router.get('/debts/min_station', (req, res, next) => { 
+router.get('/debts/min_station', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT station_id, SUM(subscriber_debt) + SUM(subscriber_intercity_debt) AS "debt_sum"
                           FROM subs_subs_fees_type 
@@ -148,7 +149,7 @@ router.get('/debts/min_station', (req, res, next) => {
 });
 
 // get station with highest debt sum
-router.get('/debts/max_station/:station_type', (req, res, next) => { 
+router.get('/debts/max_station/:station_type', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT station_id, SUM(subscriber_debt) + SUM(subscriber_intercity_debt) AS "debt_sum"
                           FROM subs_subs_fees_type 
@@ -169,7 +170,7 @@ router.get('/debts/max_station/:station_type', (req, res, next) => {
 });
 
 // get station with highest debt sum
-router.get('/debts/min_station/:station_type', (req, res, next) => { 
+router.get('/debts/min_station/:station_type', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT station_id, SUM(subscriber_debt) + SUM(subscriber_intercity_debt) AS "debt_sum"
                           FROM subs_subs_fees_type 

@@ -59,3 +59,10 @@ CREATE TABLE course_work_db_1.intercity_log (
     FOREIGN KEY (station_id) REFERENCES stations (station_id)
 );
 
+DROP TABLE course_work_db_1.user_list;
+CREATE TABLE course_work_db_1.user_list (
+	user_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_name VARCHAR(30) NOT NULL UNIQUE,
+    user_password VARCHAR(100) NOT NULL,
+    user_role VARCHAR(10) NOT NULL
+);

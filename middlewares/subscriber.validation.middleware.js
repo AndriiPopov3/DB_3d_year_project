@@ -1,5 +1,3 @@
-const QueryService = require('../services/queryService');
-
 const createValidSubscriber = (req, res, next) => {
     if(res.data){
         if(typeof(res.data.subscriber_first_name) !== "string" ||

@@ -2,12 +2,19 @@ const { Router } = require('express');
 const routes = require('.');
 const connection = require('../app/db.config');
 const { createValidIntercityLogEntry, updateValidIntercityLogEntry } = require('../middlewares/intercity_log.validation.middleware');
-
+const { authenticateJWT } = require('../middlewares/authorization.middleware');
 const router = Router();
 
 // add a new intercity log entry
-router.post('/', (req, res, next) => { 
+router.post('/', authenticateJWT, (req, res, next) => { 
     try {
+        const { role } = req.user;
+        if (role !== 'admin' && role !== 'manager') {
+             return res.status(403).send({
+                error: true,
+                message: "Forbidden"
+             });
+        }
         const intercityLogEntryData = {
             intercity_call_date: req.body.intercity_call_date,
             subscriber_id: req.body.subscriber_id,
@@ -39,8 +46,15 @@ router.post('/', (req, res, next) => {
 });
 
 // update intercity log entry
-router.put('/:intercity_call_id', async (req, res, next) => { 
+router.put('/:intercity_call_id', authenticateJWT, async (req, res, next) => { 
     try {
+        const { role } = req.user;
+        if (role !== 'admin' && role !== 'manager') {
+             return res.status(403).send({
+                error: true,
+                message: "Forbidden"
+             });
+        }
         const updatedData = {
             intercity_call_date: req.body.intercity_call_date,
             subscriber_id: req.body.subscriber_id,
@@ -66,8 +80,15 @@ router.put('/:intercity_call_id', async (req, res, next) => {
 });
 
 // delete an intercity log entry
-router.delete('/:intercity_call_id', (req, res, next) => {
+router.delete('/:intercity_call_id', authenticateJWT, (req, res, next) => {
     try {
+        const { role } = req.user;
+        if (role !== 'admin' && role !== 'manager') {
+             return res.status(403).send({
+                error: true,
+                message: "Forbidden"
+             });
+        }
         connection.query(`DELETE FROM intercity_log WHERE intercity_call_id = ${req.params.intercity_call_id}`, (error, results, fields) => {
             if(error){
                 throw error;

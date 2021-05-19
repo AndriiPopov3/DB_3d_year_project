@@ -2,12 +2,20 @@ const { Router } = require('express');
 const routes = require('.');
 const connection = require('../app/db.config');
 const { createValidSubscriberFee, updateValidSubscriberFee } = require('../middlewares/subscriber_fees.validation.middleware');
+const { authenticateJWT } = require('../middlewares/authorization.middleware');
 
 const router = Router();
 
 // add a new subscriber fee
-router.post('/', (req, res, next) => { 
+router.post('/', authenticateJWT, (req, res, next) => { 
     try {
+        const { role } = req.user;
+        if (role !== 'admin' && role !== 'manager') {
+             return res.status(403).send({
+                error: true,
+                message: "Forbidden"
+             });
+        }
         const subscriberFeeData = {
             subscriber_id: req.body.subscriber_id,
             subscriber_access: req.body.subscriber_access,
@@ -48,8 +56,15 @@ router.post('/', (req, res, next) => {
 });
 
 // update subscriber fee
-router.put('/:subscriber_id', async (req, res, next) => { 
+router.put('/:subscriber_id', authenticateJWT, async (req, res, next) => { 
     try {
+        const { role } = req.user;
+        if (role !== 'admin' && role !== 'manager') {
+             return res.status(403).send({
+                error: true,
+                message: "Forbidden"
+             });
+        }
         const updatedData = {
             subscriber_access: req.body.subscriber_access,
             subscriber_intercity_access: req.body.subscriber_intercity_access,
@@ -79,8 +94,15 @@ router.put('/:subscriber_id', async (req, res, next) => {
 });
 
 // delete a subscriber fee
-router.delete('/:subscriber_id', (req, res, next) => {
+router.delete('/:subscriber_id', authenticateJWT, (req, res, next) => {
     try {
+        const { role } = req.user;
+        if (role !== 'admin' && role !== 'manager') {
+             return res.status(403).send({
+                error: true,
+                message: "Forbidden"
+             });
+        }
         connection.query(`DELETE FROM subscriber_fees WHERE subscriber_id = ${req.params.subscriber_id}`, (error, results, fields) => {
             if(error){
                 throw error;
