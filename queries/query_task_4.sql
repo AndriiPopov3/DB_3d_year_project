@@ -17,10 +17,10 @@ WHERE s.station_id = ss.station_id;
 SELECT * FROM subs_subs_fees_type;
 
 -- any type desc
-SELECT station_id, COUNT(*) 
+SELECT station_id, COUNT(*) AS num_of_debtors
 FROM subs_subs_fees_type 
 GROUP BY station_id 
-ORDER BY COUNT(*) DESC;
+ORDER BY num_of_debtors DESC;
 
 -- specific type desc
 SELECT station_id, COUNT(*) 
