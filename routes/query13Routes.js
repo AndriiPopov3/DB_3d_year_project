@@ -21,10 +21,11 @@ router.get('/new_debtors', authenticateJWT, (req, res, next) => {
                               JOIN subscriber_fees sf ON s.subscriber_id = sf.subscriber_id 
                               GROUP BY s.subscriber_id) j 
                           WHERE debt_time < 3 AND (j.subscriber_debt != 0 OR j.subscriber_intercity_debt != 0);`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         
         })
         
@@ -51,10 +52,11 @@ router.get('/new_debtors_by_station/:station_id', authenticateJWT, (req, res, ne
                               JOIN subscriber_fees sf ON s.subscriber_id = sf.subscriber_id 
                               GROUP BY s.subscriber_id) j 
                           WHERE j.station_id = ${req.params.station_id} AND debt_time < 3 AND (j.subscriber_debt != 0 OR j.subscriber_intercity_debt != 0);`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         
         })
         
@@ -81,10 +83,11 @@ router.get('/new_debtors_by_district/:subscriber_address_district', authenticate
                               JOIN subscriber_fees sf ON s.subscriber_id = sf.subscriber_id 
                               GROUP BY s.subscriber_id) j 
                           WHERE j.subscriber_address_district = '${req.params.subscriber_address_district}' AND debt_time < 3 AND (j.subscriber_debt != 0 OR j.subscriber_intercity_debt != 0);`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         
         })
         

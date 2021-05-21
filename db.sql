@@ -58,8 +58,36 @@ CREATE TABLE course_work_db_1.intercity_log (
     FOREIGN KEY (subscriber_id) REFERENCES subscribers (subscriber_id),
     FOREIGN KEY (station_id) REFERENCES stations (station_id)
 );
+-- DROP TABLE course_work_db_1.queue_entry;
+CREATE TABLE course_work_db_1.queue_entry (
+	queue_entry_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	client_first_name VARCHAR(30) NULL,
+    client_second_name VARCHAR(30) NULL,
+	client_district VARCHAR(30) NULL,
+    client_street VARCHAR(30) NULL,
+    client_type VARCHAR(30) NULL,
+    desired_phone_type VARCHAR(30) NULL
+);
 
-DROP TABLE course_work_db_1.user_list;
+-- DROP TABLE course_work_db_1.queue;
+CREATE TABLE course_work_db_1.queue (
+	queue_entry_id INTEGER,
+	queue_type VARCHAR(15) NULL,
+    client_first_name VARCHAR(30) NULL,
+    client_second_name VARCHAR(30) NULL,
+	client_district VARCHAR(30) NULL,
+    client_street VARCHAR(30) NULL,
+    client_type VARCHAR(30) NULL,
+    desired_phone_type VARCHAR(30) NULL,
+    station_id INTEGER NOT NULL,
+    availability BOOL DEFAULT FALSE,
+    FOREIGN KEY (station_id) REFERENCES stations (station_id),
+    FOREIGN KEY (queue_entry_id) REFERENCES queue_entry (queue_entry_id)
+);
+
+
+
+-- DROP TABLE course_work_db_1.user_list;
 CREATE TABLE course_work_db_1.user_list (
 	user_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_name VARCHAR(30) NOT NULL UNIQUE,

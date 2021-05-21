@@ -41,10 +41,11 @@ router.post('/', authenticateJWT, (req, res, next) => {
          ${req.body.station_id},
          '${req.body.public_phone_address_district}',
          '${req.body.public_phone_address_street}')`, (error, results, fields) => {
-            //  if(error){
-            //     throw error;
-            //  }
-            res.json({ query_result: results });
+            if(error){
+                res.json({ message: "Error" });
+             }else{
+                res.json({ message: "Entry was successfully added" });
+             }
         })
 });
 
@@ -79,7 +80,11 @@ router.put('/:public_phone_id', authenticateJWT, async (req, res, next) => {
         public_phone_address_district = '${res.data.public_phone_address_district}',
         public_phone_address_street = '${res.data.public_phone_address_street}'
         WHERE public_phone_id = ${req.params.public_phone_id}`, (error, results, fields) => {
-            res.json({ query_result: results });
+            if(error){
+                res.json({ message: "Error" });
+             }else{
+                res.json({ message: "Entry was successfully edited" });
+             }
         })
 });
 
@@ -95,16 +100,15 @@ router.delete('/:public_phone_id', authenticateJWT, (req, res, next) => {
        }
         connection.query(`DELETE FROM public_phones WHERE public_phone_id = ${req.params.public_phone_id}`, (error, results, fields) => {
             if(error){
-                throw error;
-            }
-            res.json({ query_result: results });
+                res.json({ message: "Error" });
+             }else{
+                res.json({ message: "Entry was successfully deleted" });
+             };
         })
     } catch(err) {
         console.log("error");
         next(err);
     }
-}, (req, res, next) => {
-    
 });
 
 module.exports = router;

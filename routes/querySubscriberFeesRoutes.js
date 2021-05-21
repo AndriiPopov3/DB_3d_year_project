@@ -48,10 +48,11 @@ router.post('/', authenticateJWT, (req, res, next) => {
          ${res.data.subscriber_debt},
          ${res.data.subscriber_intercity_debt},
          ${res.data.debt_time})`, (error, results, fields) => {
-             if(error){
-                throw error;
+            if(error){
+                res.json({ message: "Error" });
+             }else{
+                res.json({ message: "Entry was successfully added" });
              }
-            res.json({ query_result: results });
         })
 });
 
@@ -89,7 +90,11 @@ router.put('/:subscriber_id', authenticateJWT, async (req, res, next) => {
         subscriber_intercity_debt = ${res.data.subscriber_intercity_debt},
         debt_time = ${res.data.debt_time}
         WHERE subscriber_id = ${req.params.subscriber_id}`, (error, results, fields) => {
-            res.json({ query_result: results });
+            if(error){
+                res.json({ message: "Error" });
+             }else{
+                res.json({ message: "Entry was successfully edited" });
+             }
         })
 });
 
@@ -105,16 +110,15 @@ router.delete('/:subscriber_id', authenticateJWT, (req, res, next) => {
         }
         connection.query(`DELETE FROM subscriber_fees WHERE subscriber_id = ${req.params.subscriber_id}`, (error, results, fields) => {
             if(error){
-                throw error;
-            }
-            res.json({ query_result: results });
+                res.json({ message: "Error" });
+             }else{
+                res.json({ message: "Entry was successfully deleted" });
+             }
         })
     } catch(err) {
         console.log("error");
         next(err);
     }
-}, (req, res, next) => {
-    
 });
 
 module.exports = router;

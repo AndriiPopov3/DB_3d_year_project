@@ -11,10 +11,11 @@ router.get('/subscribers/:subscriber_phone', authenticateJWT, (req, res, next) =
     try {
         connection.query(`SELECT * FROM subscribers WHERE subscriber_phone = '${req.params.subscriber_phone}';
         SELECT * FROM subscriber_fees WHERE subscriber_id IN (SELECT subscriber_id FROM subscribers WHERE subscriber_phone = '${req.params.subscriber_phone}');`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+            if(error){
+                res.json({ message: error });
+            }else{
+                res.json({ query_result: results });
+            }
         
         })
         

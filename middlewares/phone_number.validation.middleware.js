@@ -20,6 +20,12 @@ const createValidPhone = (req, res, next) => {
                     message: "Fields must not be empty"
                 });
           }
+          if(res.data.station_id > 2147483647 || res.data.station_id < 0){
+            return res.status(400).send({
+                error: true,
+                message: "Invalid station id"
+             });
+        }
           if(res.data.phone_number.length > 30){
             return res.status(400).send({
                 error: true,

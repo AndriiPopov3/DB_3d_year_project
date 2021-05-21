@@ -7,8 +7,6 @@ const { authenticateJWT } = require('../middlewares/authorization.middleware');
 
 const router = Router();
 
-
-// CRUD
 // add a new subscriber
 router.post('/', authenticateJWT, (req, res, next) => {
     try {
@@ -63,7 +61,11 @@ router.post('/', authenticateJWT, (req, res, next) => {
          '${res.data.subscriber_phone_type}',
          '${res.data.subscriber_type}', 
          ${res.data.station_id})`, (error, results, fields) => {
-            res.json({ query_result: results });
+            if(error){
+                res.json({ message: error });
+             }else{
+                res.json({ message: "Entry was successfully added" });
+             }
         })
 });
 
@@ -79,16 +81,15 @@ router.delete('/:subscriber_id', authenticateJWT, (req, res, next) => {
        }
         connection.query(`DELETE FROM subscribers WHERE subscriber_id = ${req.params.subscriber_id}`, (error, results, fields) => {
             if(error){
-                throw error;
-            }
-            res.json({ query_result: results });
+                res.json({ message: error });
+             }else{
+                res.json({ message: "Entry was successfully edited" });
+             }
         })
     } catch(err) {
         console.log("error");
         next(err);
     }
-}, (req, res, next) => {
-    
 });
 
 // update a subscriber
@@ -135,10 +136,11 @@ router.put('/:subscriber_id', authenticateJWT, (req, res, next) => {
                           subscriber_type = '${res.data.subscriber_type}',
                           station_id = ${res.data.station_id}
                           WHERE subscriber_id = ${req.params.subscriber_id}`, (error, results, fields) => {
-            if(error){
-                throw error;
-            }
-            res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                             }else{
+                                res.json({ message: "Entry was successfully deleted" });
+                             }
         })
 });
 

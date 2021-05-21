@@ -13,10 +13,11 @@ router.get('/debtors/max_station', authenticateJWT, (req, res, next) => {
                           FROM subs_subs_fees_type 
                           GROUP BY station_id 
                           ORDER BY COUNT(*) DESC`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");
@@ -33,10 +34,11 @@ router.get('/debtors/max_station_desc', authenticateJWT, (req, res, next) => {
                           FROM subs_subs_fees_type 
                           GROUP BY station_id 
                           ORDER BY num_of_debtors DESC`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");
@@ -53,10 +55,11 @@ router.get('/debtors/max_station_asc', authenticateJWT, (req, res, next) => {
                           FROM subs_subs_fees_type 
                           GROUP BY station_id 
                           ORDER BY num_of_debtors ASC`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");
@@ -74,10 +77,11 @@ router.get('/debtors/max_station_desc/:station_type', authenticateJWT, (req, res
                           WHERE station_type = "${req.params.station_type}"
                           GROUP BY station_id 
                           ORDER BY num_of_debtors DESC`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");
@@ -95,10 +99,11 @@ router.get('/debtors/max_station_asc/:station_type', authenticateJWT, (req, res,
                           WHERE station_type = "${req.params.station_type}"
                           GROUP BY station_id 
                           ORDER BY num_of_debtors ASC`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");
@@ -115,10 +120,11 @@ router.get('/debts/max_station', authenticateJWT, (req, res, next) => {
                           FROM subs_subs_fees_type 
                           GROUP BY station_id 
                           ORDER BY debt_sum DESC`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");
@@ -135,10 +141,11 @@ router.get('/debts/min_station', authenticateJWT, (req, res, next) => {
                           FROM subs_subs_fees_type 
                           GROUP BY station_id 
                           ORDER BY debt_sum ASC`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");
@@ -156,10 +163,11 @@ router.get('/debts/max_station/:station_type', authenticateJWT, (req, res, next)
                           WHERE station_type = "${req.params.station_type}"
                           GROUP BY station_id 
                           ORDER BY debt_sum DESC`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");
@@ -177,10 +185,11 @@ router.get('/debts/min_station/:station_type', authenticateJWT, (req, res, next)
                           WHERE station_type = "${req.params.station_type}"
                           GROUP BY station_id 
                           ORDER BY debt_sum ASC`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");

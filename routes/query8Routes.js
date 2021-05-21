@@ -10,10 +10,11 @@ const router = Router();
 router.get('/procedure/findPhoneByAddress/:subscriber_address_street', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`CALL findPhoneByAddress('${req.params.subscriber_address_street}', @M); SELECT @M`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+            if(error){
+                res.json({ message: error });
+            }else{
+                res.json({ query_result: results });
+            }
         })
     } catch(err) {
         console.log("error");
@@ -29,10 +30,11 @@ router.get('/phones_by_address/:subscriber_address_street', authenticateJWT, (re
         connection.query(`SELECT COUNT(subscriber_id) 
                           FROM subscribers 
                           WHERE subscriber_address_street = '${req.params.subscriber_address_street}';`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");
@@ -51,10 +53,11 @@ router.get('/int_phones_by_building/:subscriber_address_street', authenticateJWT
                                 JOIN subscriber_fees sf ON s.subscriber_id = sf.subscriber_id 
                                 GROUP BY s.subscriber_id) j 
                           WHERE j.subscriber_address_street = '${req.params.subscriber_address_street}' AND j.subscriber_intercity_access = true;`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");
@@ -73,10 +76,11 @@ router.get('/int_phones_by_street/:street_name', authenticateJWT, (req, res, nex
                                 JOIN subscriber_fees sf ON s.subscriber_id = sf.subscriber_id 
                                 GROUP BY s.subscriber_id) j 
                           WHERE j.subscriber_address_street  LIKE '%${req.params.street_name}' AND j.subscriber_intercity_access = true;`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");

@@ -1,8 +1,4 @@
 const { Router } = require('express');
-const routes = require('.');
-const main = require('../app/db.config');
-const path = require('path');
-// const users = require('../app/auth.config');
 const router = Router();
 const jwt = require('jsonwebtoken');
 const accessTokenSecret = require('../app/auth.token');
@@ -52,7 +48,11 @@ router.post('/login', (req, res, next) => {
 router.post('/sign_up', (req, res, next) => {
     try {
         const { username, password } = req.body;
-        
+        if(password.length < 3){
+            return res.status(400).send({
+                error: "Password must be at least 3 characters long"
+            });
+        }
         function doesUserExist(callback) {
             getUser(username, (error, results) => {
                 if(results.length) {
@@ -86,7 +86,7 @@ router.post('/sign_up', (req, res, next) => {
                                             if(error){
                                                 throw error;
                                             }
-                                            res.json({ query_result: results });
+                                            res.json({ result: "Registration successful" });
                                           })
                 });
             }

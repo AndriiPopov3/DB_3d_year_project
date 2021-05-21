@@ -30,6 +30,18 @@ const createValidIntercityLogEntry = (req, res, next) => {
                 message: "Invalid date format"
              });
         }
+        if(res.data.subscriber_id > 2147483647 || res.data.subscriber_id < 0){
+            return res.status(400).send({
+                error: true,
+                message: "Invalid subscriber id"
+             });
+        }
+        if(res.data.station_id > 2147483647 || res.data.station_id < 0){
+            return res.status(400).send({
+                error: true,
+                message: "Invalid station id"
+             });
+        }
           if(res.data.intercity_call_destination.length > 30){
             return res.status(400).send({
                 error: true,

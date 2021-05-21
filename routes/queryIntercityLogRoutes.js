@@ -38,10 +38,12 @@ router.post('/', authenticateJWT, (req, res, next) => {
          ${req.body.subscriber_id},
          ${req.body.station_id},
          '${req.body.intercity_call_destination}')`, (error, results, fields) => {
-            //  if(error){
-            //     throw error;
-            //  }
-            res.json({ query_result: results });
+             if(error){
+                res.json({ message: "Error" });
+             }else{
+                res.json({ message: "Entry was successfully added" });
+             }
+            
         })
 });
 
@@ -75,7 +77,11 @@ router.put('/:intercity_call_id', authenticateJWT, async (req, res, next) => {
         station_id = ${res.data.station_id},
         intercity_call_destination = '${res.data.intercity_call_destination}'
         WHERE intercity_call_id = ${req.params.intercity_call_id}`, (error, results, fields) => {
-            res.json({ query_result: results });
+            if(error){
+                res.json({ message: "Error" });
+             }else{
+                res.json({ message: "Entry was successfully edited" });
+             }
         })
 });
 
@@ -91,16 +97,15 @@ router.delete('/:intercity_call_id', authenticateJWT, (req, res, next) => {
         }
         connection.query(`DELETE FROM intercity_log WHERE intercity_call_id = ${req.params.intercity_call_id}`, (error, results, fields) => {
             if(error){
-                throw error;
-            }
-            res.json({ query_result: results });
+                res.json({ message: "Error" });
+             }else{
+                res.json({ message: "Entry was successfully deleted" });
+             }
         })
     } catch(err) {
         console.log("error");
         next(err);
     }
-}, (req, res, next) => {
-    
 });
 
 module.exports = router;

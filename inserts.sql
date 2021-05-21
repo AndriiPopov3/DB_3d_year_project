@@ -294,4 +294,17 @@ INSERT INTO intercity_log (intercity_call_date, subscriber_id, station_id, inter
 ('2020-06-25', 47, 6, 'Dnipro'),
 ('2020-06-26', 47, 6, 'Odesa');
 
-SELECT * FROM user_list;
+INSERT INTO queue (queue_entry_id, queue_type, client_first_name, client_second_name, client_district, client_street, client_type, desired_phone_type, station_id, availability)
+	VALUES
+(1, 'standard', 'Andrew', 'Bones', 'Lower West Prewun', '67 Marcy Street', 'standard', 'standard', 1, true),
+(2, 'exemptionary', 'Julia', 'Choll', 'Downtown Plolreg', '11 Gateway Hill', 'exemptionary', 'standard', 9, true),
+(3, 'standard', 'Melina', 'Yang', 'Tegotload Valley', '84 Green Terrace', 'standard', 'parallel', 8, false),
+(4, 'exemptionary', 'John', 'Smith', 'Lower West Prewun', '65 Marcy Street', 'exemptionary', 'standard', 1, true);
+
+INSERT INTO queue_entry (client_first_name, client_second_name, client_district, client_street, client_type, desired_phone_type)
+	VALUES
+('Andrew', 'Bones', 'Lower West Prewun', '67 Marcy Street', 'standard', 'standard'),
+('Julia', 'Choll', 'Downtown Plolreg', '11 Gateway Hill', 'exemptionary', 'standard'),
+('Melina', 'Yang', 'Tegotload Valley', '84 Green Terrace', 'standard', 'parallel'),
+('John', 'Smith', 'Lower West Prewun', '65 Marcy Street', 'exemptionary', 'standard');
+

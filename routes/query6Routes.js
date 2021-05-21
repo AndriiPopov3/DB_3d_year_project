@@ -10,10 +10,11 @@ const router = Router();
 router.get('/procedure/ExemptPercent/:station_id', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`CALL ExemptPercent('${req.params.station_id}', @M); SELECT @M`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+            if(error){
+                res.json({ message: error });
+            }else{
+                res.json({ query_result: results });
+            }
         })
     } catch(err) {
         console.log("error");
@@ -27,10 +28,11 @@ router.get('/procedure/ExemptPercent/:station_id', authenticateJWT, (req, res, n
 router.get('/procedure/StanPercent/:station_id', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`CALL StanPercent('${req.params.station_id}', @M); SELECT @M`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+            if(error){
+                res.json({ message: error });
+            }else{
+                res.json({ query_result: results });
+            }
         })
     } catch(err) {
         console.log("error");
@@ -44,10 +46,11 @@ router.get('/procedure/StanPercent/:station_id', authenticateJWT, (req, res, nex
 router.get('/procedure/ExemptPercentOverall', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`CALL ExemptPercentOverall(@M); SELECT ROUND(@M, 2)`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+            if(error){
+                res.json({ message: error });
+            }else{
+                res.json({ query_result: results });
+            }
         })
     } catch(err) {
         console.log("error");
@@ -61,10 +64,11 @@ router.get('/procedure/ExemptPercentOverall', authenticateJWT, (req, res, next) 
 router.get('/procedure/StanPercentOverall', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`CALL StanPercentOverall(@M); SELECT ROUND(@M, 2)`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+            if(error){
+                res.json({ message: error });
+            }else{
+                res.json({ query_result: results });
+            }
         })
     } catch(err) {
         console.log("error");
@@ -78,10 +82,11 @@ router.get('/procedure/StanPercentOverall', authenticateJWT, (req, res, next) =>
 router.get('/procedure/ExemptPercentDistrict/:district_name', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`CALL ExemptPercentDistrict('${req.params.district_name}', @M); SELECT ROUND(@M, 2)`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+            if(error){
+                res.json({ message: error });
+            }else{
+                res.json({ query_result: results });
+            }
         })
     } catch(err) {
         console.log("error");
@@ -95,10 +100,11 @@ router.get('/procedure/ExemptPercentDistrict/:district_name', authenticateJWT, (
 router.get('/procedure/StanPercentDistrict/:district_name', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`CALL StanPercentDistrict('${req.params.district_name}', @M); SELECT ROUND(@M, 2)`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+            if(error){
+                res.json({ message: error });
+            }else{
+                res.json({ query_result: results });
+            }
         })
     } catch(err) {
         console.log("error");
@@ -112,10 +118,11 @@ router.get('/procedure/StanPercentDistrict/:district_name', authenticateJWT, (re
 router.get('/procedure/StanPercentStationType/:station_type', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`CALL StanPercentStationType('${req.params.station_type}', @M); SELECT ROUND(@M, 2)`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+            if(error){
+                res.json({ message: error });
+            }else{
+                res.json({ query_result: results });
+            }
         })
     } catch(err) {
         console.log("error");
@@ -129,10 +136,11 @@ router.get('/procedure/StanPercentStationType/:station_type', authenticateJWT, (
 router.get('/procedure/ExemptPercentStationType/:station_type', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`CALL ExemptPercentStationType('${req.params.station_type}', @M); SELECT ROUND(@M, 2)`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+            if(error){
+                res.json({ message: error });
+            }else{
+                res.json({ query_result: results });
+            }
         })
     } catch(err) {
         console.log("error");

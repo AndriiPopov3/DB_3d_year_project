@@ -41,10 +41,11 @@ router.post('/', authenticateJWT, (req, res, next) => {
         (${req.body.station_id}, 
          '${req.body.phone_number}', 
          ${req.body.number_availability})`, (error, results, fields) => {
-            //  if(error){
-            //     throw error;
-            //  }
-            res.json({ query_result: results });
+            if(error){
+                res.json({ message: "Error" });
+             }else{
+                res.json({ message: "Entry was successfully added" });
+             }
         })
 });
 
@@ -76,7 +77,11 @@ router.put('/:phone_number_id', authenticateJWT, (req, res, next) => {
         phone_number = ${req.body.phone_number},
         number_availability = ${req.body.number_availability}
         WHERE phone_number_id = ${req.params.phone_number_id}`, (error, results, fields) => {
-            res.json({ query_result: results });
+            if(error){
+                res.json({ message: "Error" });
+             }else{
+                res.json({ message: "Entry was successfully edited" });
+             }
         })
 });
 
@@ -92,16 +97,15 @@ router.delete('/:phone_number_id', authenticateJWT, (req, res, next) => {
         }
         connection.query(`DELETE FROM phone_numbers WHERE phone_number_id = ${req.params.phone_number_id}`, (error, results, fields) => {
             if(error){
-                throw error;
-            }
-            res.json({ query_result: results });
+                res.json({ message: "Error" });
+             }else{
+                res.json({ message: "Entry was successfully deleted" });
+             }
         })
     } catch(err) {
         console.log("error");
         next(err);
     }
-}, (req, res, next) => {
-    
 });
 
 module.exports = router;

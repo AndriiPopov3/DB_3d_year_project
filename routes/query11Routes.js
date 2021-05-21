@@ -10,10 +10,11 @@ const router = Router();
 router.get('/parallel_avail_replace', authenticateJWT, (req, res, next) => { 
     try {
         connection.query(`SELECT * FROM parallel_phone_numbers;`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+            if(error){
+                res.json({ message: error });
+            }else{
+                res.json({ query_result: results });
+            }
         
         })
         

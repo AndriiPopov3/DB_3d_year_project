@@ -29,6 +29,12 @@ const createValidPublicPhone = (req, res, next) => {
                 message: "Invalid public phone type"
              });
         }
+        if(res.data.station_id > 2147483647 || res.data.station_id < 0){
+            return res.status(400).send({
+                error: true,
+                message: "Invalid station id"
+             });
+        }
           if(res.data.public_phone_address_district.length > 30){
             return res.status(400).send({
                 error: true,

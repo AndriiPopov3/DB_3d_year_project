@@ -17,7 +17,6 @@ router.post('/', authenticateJWT, (req, res, next) => {
             });
        }
         const station_data = {
-            station_id: req.body.station_id,
             station_type: req.body.station_type
         };
 
@@ -30,15 +29,14 @@ router.post('/', authenticateJWT, (req, res, next) => {
     }
 }, createValidStation, (req, res, next) => {
     connection.query(`INSERT INTO stations 
-        (station_id, 
-        station_type) 
+        (station_type) 
         VALUES 
-        (${req.body.station_id}, 
-         '${req.body.station_type}')`, (error, results, fields) => {
-            //  if(error){
-            //     throw error;
-            //  }
-            res.json({ query_result: results });
+        ('${req.body.station_type}')`, (error, results, fields) => {
+            if(error){
+                res.json({ message: "Error" });
+             }else{
+                res.json({ message: "Entry was successfully added" });
+             }
         })
 });
 
@@ -66,7 +64,11 @@ router.put('/:station_id', authenticateJWT, async (req, res, next) => {
     connection.query(`UPDATE stations 
         SET station_type = '${res.data.station_type}'
         WHERE station_id = ${req.params.station_id}`, (error, results, fields) => {
-            res.json({ query_result: results });
+            if(error){
+                res.json({ message: "Error" });
+             }else{
+                res.json({ message: "Entry was successfully edited" });
+             }
         })
 });
 
@@ -82,16 +84,15 @@ router.delete('/:station_id', authenticateJWT, (req, res, next) => {
        }
         connection.query(`DELETE FROM stations WHERE station_id = ${req.params.station_id}`, (error, results, fields) => {
             if(error){
-                throw error;
-            }
-            res.json({ query_result: results });
+                res.json({ message: "Error" });
+             }else{
+                res.json({ message: "Entry was successfully deleted" });
+             }
         })
     } catch(err) {
         console.log("error");
         next(err);
     }
-}, (req, res, next) => {
-    
 });
 
 module.exports = router;

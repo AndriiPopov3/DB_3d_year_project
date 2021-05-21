@@ -4,17 +4,17 @@ SELECT * FROM subscribers;
 SELECT COUNT(subscriber_id) FROM subscribers;
 
 -- DROP PROCEDURE findPhoneByAddress;
--- delimiter $$
+--    delimiter $$
 -- CREATE PROCEDURE findPhoneByAddress (addressName TEXT, OUT isPhone BOOL)
 -- BEGIN
--- DECLARE numPhones INT default 0;
--- SELECT COUNT(subscriber_id) INTO numPhones FROM subscribers WHERE subscriber_address_street = addressName;
--- IF numPhones != 0 
--- THEN SET isPhone = true;
--- ELSE 
--- SET isPhone = false;
--- END IF;
--- END $$
+--  DECLARE numPhones INT default 0;
+--  SELECT COUNT(subscriber_id) INTO numPhones FROM subscribers WHERE subscriber_address_street = addressName;
+--  IF numPhones != 0 
+--  THEN SET isPhone = true;
+--  ELSE 
+--  SET isPhone = false;
+--  END IF;
+--  END $$
 
 CALL findPhoneByAddress('86 International Court', @M)$$
 SELECT @M;

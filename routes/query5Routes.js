@@ -11,10 +11,11 @@ router.get('/:station_id', authenticateJWT, (req, res, next) => {
     try {
         connection.query(`SELECT * FROM public_phones 
                           WHERE station_id = ${req.params.station_id}`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");
@@ -32,10 +33,11 @@ router.get('/public_phones_by_district/:public_phone_address_district', authenti
                           SELECT COUNT(public_phone_id) 
                           FROM public_phones 
                           WHERE public_phone_address_district = '${req.params.public_phone_address_district}';`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");

@@ -13,10 +13,11 @@ router.get('/intercity/max_city', authenticateJWT, (req, res, next) => {
                           FROM intercity_log 
                           GROUP BY intercity_call_destination 
                           ORDER BY COUNT(*) DESC;`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");

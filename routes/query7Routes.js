@@ -13,10 +13,11 @@ router.get('/subscribers/:station_id', authenticateJWT, (req, res, next) => {
                           WHERE station_id = ${req.params.station_id};
                           SELECT COUNT(subscriber_id) FROM subscribers 
                           WHERE station_id = ${req.params.station_id};`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");
@@ -33,10 +34,11 @@ router.get('/subscribers_by_district/:subscriber_address_district', authenticate
                           WHERE subscriber_address_district = '${req.params.subscriber_address_district}';
                           SELECT COUNT(subscriber_id) FROM subscribers 
                           WHERE subscriber_address_district = '${req.params.subscriber_address_district}';`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");
@@ -58,10 +60,11 @@ router.get('/subscribers_by_station_type/:station_type', authenticateJWT, (req, 
                           WHERE station_id IN (SELECT station_id 
                                                FROM stations 
                                                WHERE station_type = '${req.params.station_type}');`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                                                if(error){
+                                                    res.json({ message: error });
+                                                }else{
+                                                    res.json({ query_result: results });
+                                                }
         })
     } catch(err) {
         console.log("error");
@@ -79,10 +82,11 @@ router.get('/subscribers_by_phone_type/:phone_type', authenticateJWT, (req, res,
                           SELECT COUNT(subscriber_id) 
                           FROM subscribers 
                           WHERE subscriber_phone_type = '${req.params.phone_type}';`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");
@@ -102,10 +106,11 @@ router.get('/subscribers_by_phone_type_and_type/:subscriber_type/:phone_type', a
                           FROM subscribers 
                           WHERE subscriber_phone_type = '${req.params.phone_type}' 
                           AND subscriber_type = '${req.params.subscriber_type}';`, (error, results, fields) => {
-                                                    if(error){
-                                                        throw error;
-                                                    }
-                                                     res.json({ query_result: results });
+                            if(error){
+                                res.json({ message: error });
+                            }else{
+                                res.json({ query_result: results });
+                            }
         })
     } catch(err) {
         console.log("error");

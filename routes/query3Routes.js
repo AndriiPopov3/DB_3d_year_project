@@ -23,9 +23,10 @@ router.get('/debtors/:station_id', authenticateJWT, (req, res, next) => {
                                                 OR subscriber_intercity_debt != 0);
                                                 `, (error, results, fields) => {
                                                     if(error){
-                                                        throw error;
+                                                        res.json({ message: error });
+                                                    }else{
+                                                        res.json({ query_result: results });
                                                     }
-                                                     res.json({ query_result: results });
         })
     } catch(err) {
         console.log("error");
@@ -50,9 +51,10 @@ router.get('/debtors', authenticateJWT, (req, res, next) => {
                                                   OR subscriber_intercity_debt != 0);
                                                 `, (error, results, fields) => {
                                                     if(error){
-                                                        throw error;
+                                                        res.json({ message: error });
+                                                    }else{
+                                                        res.json({ query_result: results });
                                                     }
-                                                     res.json({ query_result: results });
         })
     } catch(err) {
         console.log("error");
@@ -78,9 +80,10 @@ router.get('/debtors_by_district/:subscriber_address_district', authenticateJWT,
                                                 WHERE subscriber_debt != 0 
                                                 OR subscriber_intercity_debt != 0);`, (error, results, fields) => {
                                                     if(error){
-                                                        throw error;
+                                                        res.json({ message: error });
+                                                    }else{
+                                                        res.json({ query_result: results });
                                                     }
-                                                     res.json({ query_result: results });
         })
     } catch(err) {
         console.log("error");
@@ -102,9 +105,10 @@ router.get('/debtors_std', authenticateJWT, (req, res, next) => {
                                                   FROM subscriber_fees 
                                                   WHERE subscriber_debt != 0);`, (error, results, fields) => {
                                                     if(error){
-                                                        throw error;
+                                                        res.json({ message: error });
+                                                    }else{
+                                                        res.json({ query_result: results });
                                                     }
-                                                     res.json({ query_result: results });
         })
     } catch(err) {
         console.log("error");
@@ -126,9 +130,10 @@ router.get('/debtors_itc', authenticateJWT, (req, res, next) => {
                                                   FROM subscriber_fees 
                                                   WHERE subscriber_intercity_debt != 0);`, (error, results, fields) => {
                                                     if(error){
-                                                        throw error;
+                                                        res.json({ message: error });
+                                                    }else{
+                                                        res.json({ query_result: results });
                                                     }
-                                                     res.json({ query_result: results });
         })
     } catch(err) {
         console.log("error");
@@ -150,9 +155,10 @@ router.get('/debtors/:debt_min/:debt_max', authenticateJWT, (req, res, next) => 
                                                   FROM subscriber_fees 
                                                   WHERE subscriber_debt BETWEEN ${req.params.debt_min} AND ${req.params.debt_max});`, (error, results, fields) => {
                                                     if(error){
-                                                        throw error;
+                                                        res.json({ message: error });
+                                                    }else{
+                                                        res.json({ query_result: results });
                                                     }
-                                                     res.json({ query_result: results });
         })
     } catch(err) {
         console.log("error");
@@ -174,9 +180,10 @@ router.get('/debtors_by_time/:debt_time_min', authenticateJWT, (req, res, next) 
                                                   FROM subscriber_fees 
                                                   WHERE debt_time > ${req.params.debt_time_min});`, (error, results, fields) => {
                                                     if(error){
-                                                        throw error;
+                                                        res.json({ message: error });
+                                                    }else{
+                                                        res.json({ query_result: results });
                                                     }
-                                                     res.json({ query_result: results });
         })
     } catch(err) {
         console.log("error");

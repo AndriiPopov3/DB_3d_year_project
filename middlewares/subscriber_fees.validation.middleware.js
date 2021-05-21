@@ -31,6 +31,12 @@ const createValidSubscriberFee = (req, res, next) => {
                     message: "Fields must not be empty"
                 });
           }
+          if(res.data.subscriber_id > 2147483647 || res.data.subscriber_id < 0){
+            return res.status(400).send({
+                error: true,
+                message: "Invalid subscriber id"
+             });
+        }
           if(res.data.subscriber_fee < 0){
             return res.status(400).send({
                 error: true,

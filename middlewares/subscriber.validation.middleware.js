@@ -124,6 +124,12 @@ const createValidSubscriber = (req, res, next) => {
                 message: "Subscriber type doesn't exist"
              });
         }
+        if(res.data.station_id > 2147483647 || res.data.station_id < 0){
+            return res.status(400).send({
+                error: true,
+                message: "Invalid station id"
+             });
+        }
         // if(!QueryService.doesStationExist(res.data.station_id)){
         //     return res.status(400).send({
         //         error: true,

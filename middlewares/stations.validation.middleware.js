@@ -1,15 +1,12 @@
 const createValidStation = (req, res, next) => {
     if(res.data){
-        if(typeof(res.data.station_id) !== "number" ||
-             typeof(res.data.station_type) !== "string"){
+        if(typeof(res.data.station_type) !== "string"){
                 return res.status(400).send({
                     error: true,
                     message: "Invalid type"
                 });
           }
-          if(res.data.station_id === undefined ||
-             res.data.station_type === undefined || 
-             res.data.station_id === "" ||
+          if(res.data.station_type === undefined || 
              res.data.station_type === ""){
                 return res.status(400).send({
                     error: true,
