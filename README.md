@@ -1,2 +1,2 @@
 # DB_3d_year_project
-Database of city telephone station for year 3 course work. Current stage: polishing backend.
+Database of city telephone station for year 3 course work. Current stage: finished backend.
